@@ -1,6 +1,5 @@
 
 pip
-wheel
 python3 
 libblosc-dev 
 libbrotli-dev 
