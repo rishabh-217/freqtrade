@@ -111,22 +111,22 @@ function updateenv() {
 }
 
 # Install tab lib
-function install_talib() {
-    if [ -f /usr/local/lib/libta_lib.a ]; then
-        echo "ta-lib already installed, skipping"
-        return
-    fi
-
-    cd build_helpers && ./install_ta-lib.sh
-
-    if [ $? -ne 0 ]; then
-        echo "Quitting. Please fix the above error before continuing."
-        cd ..
-        exit 1
-    fi;
-
-    cd ..
-}
+#function install_talib() {
+#    if [ -f /usr/local/lib/libta_lib.a ]; then
+#        echo "ta-lib already installed, skipping"
+#        return
+#    fi
+#
+#    cd build_helpers && ./install_ta-lib.sh
+#
+#    if [ $? -ne 0 ]; then
+#        echo "Quitting. Please fix the above error before continuing."
+#        cd ..
+#        exit 1
+#    fi;
+#
+#    cd ..
+#}
 
 function install_mac_newer_python_dependencies() {
 
@@ -161,21 +161,21 @@ function install_macos() {
     if [[ $version -ge 9 ]]; then               #Checks if python version >= 3.9
         install_mac_newer_python_dependencies
     fi
-    install_talib
+#    install_talib
 }
 
 # Install bot Debian_ubuntu
 function install_debian() {
     sudo apt-get update
     sudo apt-get install -y gcc build-essential autoconf libtool pkg-config make wget git curl $(echo lib${PYTHON}-dev ${PYTHON}-venv)
-    install_talib
+#    install_talib
 }
 
 # Install bot RedHat_CentOS
 function install_redhat() {
     sudo yum update
     sudo yum install -y gcc gcc-c++ make autoconf libtool pkg-config wget git $(echo ${PYTHON}-devel | sed 's/\.//g')
-    install_talib
+#    install_talib
 }
 
 # Upgrade the bot
