@@ -1,5 +1,5 @@
 if [ -z "$1" ]; then
-  INSTALL_LOC=/usr/local
+  INSTALL_LOC=~/build_helpers/
 else
   INSTALL_LOC=${1}
 fi

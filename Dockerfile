@@ -28,9 +28,9 @@ RUN  apt-get update \
   && pip install --upgrade pip
 
 # Install TA-lib
-COPY build_helpers/* /tmp/
-RUN cd /tmp && /tmp/install_ta-lib.sh && rm -r /tmp/*ta-lib*
-ENV LD_LIBRARY_PATH /usr/local/lib
+COPY build_helpers/* ~/build_helpers/
+RUN cd ~/build_helpers && ~/build_helpers/install_ta-lib.sh && rm -r ~/build_helpers/*ta-lib*
+ENV LD_LIBRARY_PATH ~/build_helpers/lib
 
 # Install dependencies
 COPY --chown=ftuser:ftuser requirements.txt requirements-hyperopt.txt /freqtrade/
@@ -40,14 +40,14 @@ RUN  pip install --user --no-cache-dir numpy \
 
 # Copy dependencies to runtime-image
 FROM base as runtime-image
-COPY --from=python-deps /usr/local/lib /usr/local/lib
-ENV LD_LIBRARY_PATH /usr/local/lib
+COPY --from=python-deps ~/build_helpers/lib ~/build_helpers/lib
+ENV LD_LIBRARY_PATH ~/build_helpers/lib
+#
+# COPY --from=python-deps --chown=ftuser:ftuser /home/ftuser/.local /home/ftuser/.local
 
-COPY --from=python-deps --chown=ftuser:ftuser /home/ftuser/.local /home/ftuser/.local
-
-USER ftuser
-# Install and execute
-COPY --chown=ftuser:ftuser . /freqtrade/
+# USER ftuser
+# # Install and execute
+# COPY --chown=ftuser:ftuser . /freqtrade/
 
 RUN pip install -e . --user --no-cache-dir --no-build-isolation \
   && mkdir /freqtrade/user_data/ \
