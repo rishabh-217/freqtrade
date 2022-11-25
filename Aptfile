@@ -1,5 +1,6 @@
 
-
+pip
+python3.10-venv
 python3 
 libblosc-dev 
 libbrotli-dev 
