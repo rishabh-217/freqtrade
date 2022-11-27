@@ -7,7 +7,7 @@ wget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgz
 tar -xf Python-3.10.8.tgz
 mv Python-3.10.8 python
 cd python
-mv Python-3.10 python
+mv Python python
 cd ..
 cd ta-lib
 ./configure --includedir=/app/.heroku/python/include/ --libdir=/app/.heroku/python/lib --bindir=/app/.heroku/python/bin
