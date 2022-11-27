@@ -3,10 +3,11 @@ echo 'echo "hello world"' >.heroku/run.sh
 cd .heroku
 wget -q http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
 tar -xf ta-lib-0.4.0-src.tar.gz
-wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
-tar -xf Python-3.5.1.tgz
+wget https://www.python.org/ftp/python/3.10.8/Python-3.10.8.tgz
+tar -xf Python-3.10.8.tgz
+mv Python-3.10.8 python
 cd ta-lib
-./configure --includedir=/app/.heroku/Python-3.5.1/include/ --libdir=/app/.heroku/Python-3.5.1/lib --bindir=/app/.heroku/Python-3.5.1/bin
+./configure --includedir=/app/.heroku/python/include/ --libdir=/app/.heroku/python/lib --bindir=/app/.heroku/python/bin
 make
 make install
 cd ..
