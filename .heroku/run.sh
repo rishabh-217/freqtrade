@@ -9,3 +9,5 @@ cd ta-lib
 ./configure --includedir=/app/.heroku/Python-3.5.1/include/ --libdir=/app/.heroku/Python-3.5.1/lib --bindir=/app/.heroku/Python-3.5.1/bin
 make
 make install
+cd ..
+cd ..
